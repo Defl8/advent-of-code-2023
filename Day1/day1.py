@@ -9,16 +9,27 @@ def main():
 # Turns input into list
     garbage_list = garbage.readlines()
     int_list = []
+    value_list = []
 
 # iterates over every entry in the list and adds to int list if conversion to integer is successful
     for entry in garbage_list:
         for c in entry:
             try:
-                int_list.append(int(c))
+                int(c)
+                value_list.append(c)
             except:
                 continue
+        int_list.append("".join(value_list))
+        value_list.clear()
 
-    print(int_list)
+# Joins every the first and last integer from the valuesin the list and then sums all the integers
+    sum = 0
+    print(len(int_list))
+    for i in range(0, len(int_list),):
+        value = int_list[i][0:1] + \
+            int_list[i][len(int_list[i]) - 1:len(int_list[i])]
+        sum += int(value)
+    print(sum)
 
 
 if __name__ == "__main__":
